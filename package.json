@@ -1,0 +1,53 @@
+{
+  "name": "@larelabs/refinery-mcp",
+  "version": "0.1.0",
+  "description": "MCP server for cleaning raw HTML into LLM-ready text with Refinery.",
+  "type": "module",
+  "bin": {
+    "refinery-mcp": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/index.ts",
+    "start": "node dist/index.js",
+    "inspect": "npx @modelcontextprotocol/inspector node dist/index.js",
+    "smoke": "node examples/smoke.mjs"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "html",
+    "rag",
+    "llm",
+    "apify",
+    "web-scraping"
+  ],
+  "author": "LareLabs",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "latest",
+    "apify-client": "latest",
+    "zod": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "tsx": "latest",
+    "typescript": "latest"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LareLabs/refinery-mcp.git"
+  },
+  "homepage": "https://github.com/LareLabs/refinery-mcp#readme",
+  "bugs": {
+    "url": "https://github.com/LareLabs/refinery-mcp/issues"
+  }
+}
