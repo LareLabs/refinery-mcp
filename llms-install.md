@@ -41,7 +41,15 @@ Use this config for Cursor, Claude Desktop, Claude Code, or any MCP-compatible c
 After installation, ask your client:
 
 ```text
-Use Refinery MCP to clean https://example.com and return the clean text and word_count.
+Use Refinery MCP to clean https://docs.stripe.com/payments and return the clean text, word_count, and a short summary.
+```
+
+For raw HTML already fetched by a browser/crawler:
+
+```text
+Use Refinery MCP clean_html on this HTML before adding it to my RAG ingestion queue. Return cleaned text and estimated token savings:
+
+<html><body><nav>Home Pricing Login</nav><article><h1>Vendor security update</h1><p>We now support SOC 2 exports for enterprise accounts.</p></article><footer>Legal Privacy Careers</footer></body></html>
 ```
 
 ## Notes

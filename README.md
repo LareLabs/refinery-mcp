@@ -17,6 +17,44 @@ flowchart LR
   E --> F[RAG / embeddings / LLM context]
 ```
 
+## The Problem
+
+Agents are getting good at fetching web pages. The problem is what they fetch:
+
+```html
+<html>
+  <head>
+    <script>gtag("event", "page_view")</script>
+    <style>.nav,.cookie,.footer{display:block}</style>
+  </head>
+  <body>
+    <nav>Home · Pricing · Login · Docs · Blog · Careers</nav>
+    <aside>Subscribe to our newsletter</aside>
+    <article>
+      <h1>How ACME cut support ticket routing time by 63%</h1>
+      <p>ACME routes 40,000 monthly support tickets through an AI triage system.</p>
+      <p>The team reduced retrieval noise by cleaning HTML before chunking.</p>
+    </article>
+    <footer>Legal · Privacy · Cookie settings · LinkedIn · X</footer>
+  </body>
+</html>
+```
+
+The model does not need most of that. It needs this:
+
+```text
+How ACME cut support ticket routing time by 63%
+
+ACME routes 40,000 monthly support tickets through an AI triage system.
+The team reduced retrieval noise by cleaning HTML before chunking.
+```
+
+Refinery MCP gives your agent a tool for that middle step:
+
+```text
+fetch page -> refine HTML -> send clean text to RAG / embeddings / LLM
+```
+
 ## Why
 
 Agents can fetch pages, but raw HTML is noisy and expensive:
@@ -51,11 +89,11 @@ Do not use it as your browser renderer, anti-bot layer, or site crawler.
 
 Fetches a URL through the Refinery Apify Actor and returns dataset rows with clean text and metadata.
 
-Input:
+Example input:
 
 ```json
 {
-  "url": "https://example.com",
+  "url": "https://docs.stripe.com/payments",
   "removeScripts": true,
   "removeStyles": true
 }
@@ -65,13 +103,26 @@ Input:
 
 Cleans raw HTML your agent, crawler, or browser session already fetched.
 
-Input:
+Example input:
 
 ```json
 {
-  "html": "<html><body><nav>Home</nav><article><h1>Hello</h1><p>Clean me.</p></article></body></html>",
+  "html": "<html><body><nav>Home Pricing Login</nav><article><h1>Vendor security update</h1><p>We now support SOC 2 exports for enterprise accounts.</p></article><footer>Legal Privacy Careers</footer></body></html>",
   "extractMentions": false,
   "extractHashtags": false
+}
+```
+
+Example result:
+
+```json
+{
+  "text": "Vendor security update\n\nWe now support SOC 2 exports for enterprise accounts.",
+  "word_count": 10,
+  "content_type": "web",
+  "language": "en",
+  "processing_time_ms": 44.96,
+  "success": true
 }
 ```
 
@@ -159,10 +210,16 @@ The smoke test starts the MCP server over stdio, lists tools, and calls `estimat
 ## Example Agent Prompt
 
 ```text
-Use Refinery to clean this URL before summarizing it:
-https://example.com
+Use Refinery MCP to clean this docs page before summarizing it:
+https://docs.stripe.com/payments
 
-Return the clean text, word_count, and estimated token savings.
+Return the clean text, word_count, and a short summary. Do not summarize raw HTML.
+```
+
+Another useful prompt:
+
+```text
+I fetched this page HTML with Playwright. Use Refinery MCP clean_html before adding it to my RAG ingestion queue. Return the cleaned text and estimated token savings.
 ```
 
 ## Roadmap
