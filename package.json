@@ -4,7 +4,7 @@
   "description": "MCP server for cleaning raw HTML into LLM-ready text with Refinery.",
   "type": "module",
   "bin": {
-    "refinery-mcp": "./dist/index.js"
+    "refinery-mcp": "dist/index.js"
   },
   "files": [
     "dist",
@@ -46,7 +46,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/LareLabs/refinery-mcp.git"
+    "url": "git+https://github.com/LareLabs/refinery-mcp.git"
   },
   "homepage": "https://larelabs.github.io/refinery-mcp/",
   "bugs": {
