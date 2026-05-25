@@ -8,6 +8,8 @@ Clean HTML before your agent burns tokens.
 
 Refinery MCP wraps the [Refinery Apify Actor](https://apify.com/larelabs/refinery-html-to-llm-cleaner) as an MCP server so Claude, Cursor, and other agents can turn raw HTML or URLs into clean LLM-ready text plus `word_count`.
 
+![Agent pipeline: fetch, Refinery MCP, clean text, RAG](https://i.imgur.com/rKLRTc1.png)
+
 ```mermaid
 flowchart LR
   A[Agent needs web context] --> B[Fetch URL or raw HTML]
@@ -48,6 +50,8 @@ How ACME cut support ticket routing time by 63%
 ACME routes 40,000 monthly support tickets through an AI triage system.
 The team reduced retrieval noise by cleaning HTML before chunking.
 ```
+
+![Before and after: bloated HTML vs clean LLM-ready text and token savings](https://i.imgur.com/RxmHFBz.png)
 
 Refinery MCP gives your agent a tool for that middle step:
 

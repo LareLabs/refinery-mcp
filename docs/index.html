@@ -13,6 +13,8 @@
       property="og:description"
       content="Clean raw HTML into LLM-ready text before your agent burns tokens on scripts, nav, and layout junk."
     />
+    <meta property="og:image" content="https://i.imgur.com/RxmHFBz.png" />
+    <meta name="twitter:card" content="summary_large_image" />
     <style>
       :root {
         color-scheme: dark;
@@ -101,6 +103,21 @@
         text-decoration: none;
         background: rgba(15, 23, 42, 0.58);
         backdrop-filter: blur(10px);
+      }
+
+      .visuals {
+        display: grid;
+        gap: 18px;
+        margin: 0 0 56px;
+      }
+
+      .visuals img {
+        width: 100%;
+        height: auto;
+        border-radius: 18px;
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow);
+        display: block;
       }
 
       .hero {
@@ -419,6 +436,23 @@
               </div>
             </div>
           </div>
+        </section>
+
+        <section class="visuals" aria-label="Refinery MCP visuals">
+          <img
+            src="https://i.imgur.com/rKLRTc1.png"
+            alt="Agent pipeline: fetch page, Refinery MCP cleanup, clean text for RAG and embeddings"
+            width="1200"
+            height="630"
+            loading="lazy"
+          />
+          <img
+            src="https://i.imgur.com/RxmHFBz.png"
+            alt="Before and after: bloated HTML versus clean LLM-ready text with token savings"
+            width="1200"
+            height="630"
+            loading="lazy"
+          />
         </section>
 
         <section class="section">
