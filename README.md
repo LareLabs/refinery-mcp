@@ -1,10 +1,10 @@
 # Refinery MCP
 
-Clean web HTML before your agent spends tokens on it.
+Clean HTML before your agent burns tokens.
 
 [Landing page](https://larelabs.github.io/refinery-mcp/) · [Apify Actor](https://apify.com/larelabs/refinery-html-to-llm-cleaner)
 
-Refinery MCP wraps the [Refinery Apify Actor](https://apify.com/larelabs/refinery-html-to-llm-cleaner) as an MCP server so Claude, Cursor, and other agents can turn raw HTML or URLs into clean LLM-ready text.
+Refinery MCP wraps the [Refinery Apify Actor](https://apify.com/larelabs/refinery-html-to-llm-cleaner) as an MCP server so Claude, Cursor, and other agents can turn raw HTML or URLs into clean LLM-ready text plus `word_count`.
 
 ```mermaid
 flowchart LR
@@ -24,13 +24,24 @@ Agents can fetch pages, but raw HTML is noisy and expensive:
 - repeated links and layout markup
 - huge token burn before the model sees the real content
 
-Refinery is the middle step:
+Refinery is the middle step your agent can call before it stuffs web context into a prompt:
 
 ```text
 fetch/render -> clean/refine -> chunk/embed/answer
 ```
 
 It is **not a crawler**. Use Firecrawl, Crawl4AI, Playwright, browser automation, or your own fetcher when you need rendering. Use Refinery when you already have a URL or raw HTML and want a cheap cleanup pass before the LLM.
+
+## When To Use It
+
+Use Refinery MCP when:
+
+- your agent already fetched a page but got bloated HTML
+- you want a deterministic cleanup step before RAG ingestion
+- you need `word_count` / token-ish savings before embedding
+- you want to separate crawling from content cleanup
+
+Do not use it as your browser renderer, anti-bot layer, or site crawler.
 
 ## Tools
 
@@ -50,7 +61,7 @@ Input:
 
 ### `clean_html`
 
-Cleans raw HTML your agent or crawler already fetched.
+Cleans raw HTML your agent, crawler, or browser session already fetched.
 
 Input:
 
@@ -65,6 +76,19 @@ Input:
 ### `estimate_savings`
 
 Local helper that compares raw HTML vs cleaned text and estimates token savings. This does not call Apify.
+
+Example output:
+
+```json
+{
+  "raw_chars": 168,
+  "clean_chars": 41,
+  "estimated_raw_tokens": 42,
+  "estimated_clean_tokens": 11,
+  "estimated_token_savings": 31,
+  "reduction_pct": 76
+}
+```
 
 ## Install
 
@@ -135,6 +159,7 @@ Return the clean text, word_count, and estimated token savings.
 
 ## Roadmap
 
+- MCP registry listings
 - Hosted HTTP/SSE MCP transport
 - Batch URL cleanup tool
 - Glama / PulseMCP / FindMCP / mcp.so listings
