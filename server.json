@@ -1,0 +1,22 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.LareLabs/refinery-mcp",
+  "title": "Refinery MCP",
+  "version": "0.1.0",
+  "description": "Clean raw HTML into LLM-ready text before agents spend tokens.",
+  "repository": {
+    "url": "https://github.com/LareLabs/refinery-mcp",
+    "source": "github"
+  },
+  "homepage": "https://larelabs.github.io/refinery-mcp/",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "@larelabs/refinery-mcp",
+      "version": "0.1.0",
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ]
+}

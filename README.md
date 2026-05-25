@@ -4,6 +4,8 @@ Clean HTML before your agent burns tokens.
 
 [Landing page](https://larelabs.github.io/refinery-mcp/) · [Apify Actor](https://apify.com/larelabs/refinery-html-to-llm-cleaner)
 
+<!-- mcp-name: io.github.LareLabs/refinery-mcp -->
+
 Refinery MCP wraps the [Refinery Apify Actor](https://apify.com/larelabs/refinery-html-to-llm-cleaner) as an MCP server so Claude, Cursor, and other agents can turn raw HTML or URLs into clean LLM-ready text plus `word_count`.
 
 ```mermaid
@@ -93,8 +95,7 @@ Example output:
 ## Install
 
 ```bash
-npm install
-npm run build
+npx -y @larelabs/refinery-mcp
 ```
 
 Set your Apify token:
@@ -106,14 +107,14 @@ export REFINERY_ACTOR_ID=larelabs/refinery-html-to-llm-cleaner
 
 ## Cursor / Claude Desktop config
 
-Use the built server:
+Use the published package:
 
 ```json
 {
   "mcpServers": {
     "refinery": {
-      "command": "node",
-      "args": ["/absolute/path/to/refinery-mcp/dist/index.js"],
+      "command": "npx",
+      "args": ["-y", "@larelabs/refinery-mcp"],
       "env": {
         "APIFY_TOKEN": "apify_api_xxx",
         "REFINERY_ACTOR_ID": "larelabs/refinery-html-to-llm-cleaner"
@@ -124,6 +125,13 @@ Use the built server:
 ```
 
 Or run from source during development:
+
+```bash
+git clone https://github.com/LareLabs/refinery-mcp
+cd refinery-mcp
+npm install
+npm run build
+```
 
 ```json
 {

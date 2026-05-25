@@ -9,7 +9,9 @@
   "files": [
     "dist",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "server.json",
+    "llms-install.md"
   ],
   "scripts": {
     "build": "tsc",
