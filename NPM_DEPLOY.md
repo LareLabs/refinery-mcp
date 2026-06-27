@@ -61,7 +61,13 @@ Requirements:
 
 Verify: `curl -sS 'https://registry.modelcontextprotocol.io/v0/servers?search=LareLabs/refinery'`
 
-**Alternative:** DNS auth on `larelabs.com` if you prefer not to publicize org membership (`mcp-publisher login dns --domain larelabs.com`).
+**Published:** `io.github.LareLabs/refinery-mcp` v0.1.5
+
+If publish returns 403, publicize org membership first:
+
+```bash
+gh api -X PUT orgs/LareLabs/public_members/cameronlares -H "Content-Length: 0"
+```
 
 ## README visuals
 
