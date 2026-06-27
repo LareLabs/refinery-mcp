@@ -228,7 +228,7 @@ I fetched this page HTML with Playwright. Use Refinery MCP clean_html before add
 
 ## Roadmap
 
-- MCP registry listings
+- MCP Registry publish (metadata ready; `mcp-publisher-official publish` after GitHub login)
 - Hosted HTTP/SSE MCP transport
 - Batch URL cleanup tool
 - Glama / PulseMCP / FindMCP / mcp.so listings

@@ -26,6 +26,28 @@ npm view @larelabs/refinery-mcp version
 
 Update `server.json` version to match `package.json` before publish.
 
+## MCP Registry (official discovery for Cursor/Claude agents)
+
+Refinery MCP is **not yet listed** on https://registry.modelcontextprotocol.io — requires one interactive GitHub login.
+
+```bash
+# Official CLI (not the unrelated npm package named mcp-publisher)
+curl -fsSL "https://github.com/modelcontextprotocol/registry/releases/latest/download/mcp-publisher_linux_amd64.tar.gz" \
+  | tar -xz -C /tmp && sudo mv /tmp/mcp-publisher /usr/local/bin/mcp-publisher-official
+
+cd /root/ACTIVE_PROJECTS/refinery/refinery-mcp
+/usr/local/bin/mcp-publisher-official validate server.json
+/usr/local/bin/mcp-publisher-official login github   # device flow — human approves at github.com/login/device
+/usr/local/bin/mcp-publisher-official publish
+```
+
+Requirements already in repo:
+- `package.json` → `"mcpName": "io.github.LareLabs/refinery-mcp"`
+- `server.json` → matching name + npm package `@larelabs/refinery-mcp`
+- npm publish **before** registry publish (metadata only; code lives on npm)
+
+Verify: `curl -sS 'https://registry.modelcontextprotocol.io/v0/servers?search=refinery'`
+
 ## README visuals
 
 Hosted image URLs live in `assets/image_urls.json`. Used in README and GitHub Pages (`docs/index.html`).

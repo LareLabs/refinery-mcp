@@ -92,6 +92,32 @@
         display: flex;
         gap: 10px;
         align-items: center;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 18px;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: rgba(15, 23, 42, 0.72);
+        color: var(--soft);
+        font-size: 13px;
+        text-decoration: none;
+      }
+
+      .badge strong {
+        color: var(--text);
       }
 
       .pill,
@@ -358,6 +384,7 @@
       @media (max-width: 900px) {
         nav {
           margin-bottom: 46px;
+          flex-wrap: wrap;
         }
 
         .hero,
@@ -369,10 +396,6 @@
 
         .result {
           grid-template-columns: 1fr;
-        }
-
-        .navlinks {
-          display: none;
         }
       }
     </style>
@@ -402,8 +425,14 @@
               Less page chrome. More useful context.
             </p>
             <div class="actions">
-              <a class="button primary" href="https://github.com/LareLabs/refinery-mcp">Get the MCP server</a>
+              <a class="button primary" href="https://www.npmjs.com/package/@larelabs/refinery-mcp">Install via npm</a>
               <a class="button" href="https://apify.com/larelabs/refinery-html-to-llm-cleaner">Try the Apify Actor</a>
+              <a class="button" href="https://github.com/LareLabs/refinery-mcp">View source</a>
+            </div>
+            <div class="badges">
+              <a class="badge" href="https://www.npmjs.com/package/@larelabs/refinery-mcp"><strong>npm</strong> @larelabs/refinery-mcp</a>
+              <a class="badge" href="https://apify.com/larelabs/refinery-html-to-llm-cleaner"><strong>Apify</strong> $0.002/page</a>
+              <a class="badge" href="https://github.com/LareLabs/refinery-mcp"><strong>MCP</strong> io.github.LareLabs/refinery-mcp</a>
             </div>
             <div class="muted-row">Not a crawler. The cleanup step after Firecrawl, Crawl4AI, Playwright, or your own fetcher.</div>
           </div>
@@ -509,18 +538,27 @@
           <div>
             <h2>Drop it into Cursor or Claude.</h2>
             <p>
-              Build locally, pass an Apify token, and your agent gets a cleanup
-              tool it can use before stuffing web pages into context.
+              One npm package. Set <code>APIFY_TOKEN</code> and your agent gets a cleanup
+              tool before stuffing web pages into context.
             </p>
           </div>
           <div class="card">
-            <pre class="code">git clone https://github.com/LareLabs/refinery-mcp
-cd refinery-mcp
-npm install
-npm run build
+            <pre class="code"># Cursor / Claude Desktop
+{
+  "mcpServers": {
+    "refinery": {
+      "command": "npx",
+      "args": ["-y", "@larelabs/refinery-mcp"],
+      "env": {
+        "APIFY_TOKEN": "apify_api_xxx",
+        "REFINERY_ACTOR_ID": "larelabs/refinery-html-to-llm-cleaner"
+      }
+    }
+  }
+}
 
-export APIFY_TOKEN=apify_api_xxx
-npm run smoke</pre>
+# Quick smoke (no Apify credits)
+npx -y @larelabs/refinery-mcp</pre>
           </div>
         </section>
       </main>
