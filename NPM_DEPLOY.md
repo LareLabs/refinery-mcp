@@ -28,27 +28,40 @@ Update `server.json` version to match `package.json` before publish.
 
 ## MCP Registry (official discovery for Cursor/Claude agents)
 
-Refinery MCP is **not yet listed** on https://registry.modelcontextprotocol.io — requires one interactive GitHub login.
+**Namespace:** `io.github.LareLabs/refinery-mcp` — do **not** publish under `io.github.cameronlares/*`.
+
+### Why LareLabs failed (403)
+
+The MCP Registry maps `io.github.LareLabs/*` to the **GitHub org** `LareLabs`. Your account is org **admin**, but your membership is **private** (LareLabs public members list is empty). The registry only grants org namespaces when membership is public.
+
+**Fix (one click, ~30 seconds):**
+
+1. Open https://github.com/orgs/LareLabs/people (or Profile → Your organizations → LareLabs)
+2. Find your name → **Publicize membership** (or Settings → Organization visibility → check LareLabs)
+3. Confirm: https://github.com/orgs/LareLabs/public_members/cameronlares returns 200 (not 404)
+
+Then publish:
 
 ```bash
-# Official CLI (not the unrelated npm package named mcp-publisher)
 curl -fsSL "https://github.com/modelcontextprotocol/registry/releases/latest/download/mcp-publisher_linux_amd64.tar.gz" \
   | tar -xz -C /tmp && sudo mv /tmp/mcp-publisher /usr/local/bin/mcp-publisher-official
 
 cd /root/ACTIVE_PROJECTS/refinery/refinery-mcp
+unset GITHUB_TOKEN   # invalid env token breaks gh login
 /usr/local/bin/mcp-publisher-official validate server.json
-/usr/local/bin/mcp-publisher-official login github   # device flow — human approves at github.com/login/device
-/usr/local/bin/mcp-publisher-official publish
+/usr/local/bin/mcp-publisher-official login github --token "$(gh auth token)"
+/usr/local/bin/mcp-publisher-official publish server.json
 ```
 
-Requirements already in repo:
-- `package.json` → `"mcpName": "io.github.cameronlares/refinery-mcp"` (personal namespace; LareLabs org requires public org membership on GitHub)
-- `server.json` → matching name + npm package `@larelabs/refinery-mcp`
-- npm publish **before** registry publish (metadata only; code lives on npm)
+Requirements:
 
-Verify: `curl -sS 'https://registry.modelcontextprotocol.io/v0/servers?search=refinery'`
+- `package.json` → `"mcpName": "io.github.LareLabs/refinery-mcp"`
+- `server.json` → same name + npm `@larelabs/refinery-mcp` version
+- npm publish **before** registry publish
 
-**Published:** `io.github.cameronlares/refinery-mcp` v0.1.4 (2026-06-28)
+Verify: `curl -sS 'https://registry.modelcontextprotocol.io/v0/servers?search=LareLabs/refinery'`
+
+**Alternative:** DNS auth on `larelabs.com` if you prefer not to publicize org membership (`mcp-publisher login dns --domain larelabs.com`).
 
 ## README visuals
 

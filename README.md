@@ -4,7 +4,7 @@ Clean HTML before your agent burns tokens.
 
 [Landing page](https://larelabs.github.io/refinery-mcp/) · [Apify Actor](https://apify.com/larelabs/refinery-html-to-llm-cleaner)
 
-<!-- mcp-name: io.github.cameronlares/refinery-mcp -->
+<!-- mcp-name: io.github.LareLabs/refinery-mcp -->
 
 Refinery MCP wraps the [Refinery Apify Actor](https://apify.com/larelabs/refinery-html-to-llm-cleaner) as an MCP server so Claude, Cursor, and other agents can turn raw HTML or URLs into clean LLM-ready text plus `word_count`.
 
