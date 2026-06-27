@@ -42,11 +42,13 @@ cd /root/ACTIVE_PROJECTS/refinery/refinery-mcp
 ```
 
 Requirements already in repo:
-- `package.json` → `"mcpName": "io.github.LareLabs/refinery-mcp"`
+- `package.json` → `"mcpName": "io.github.cameronlares/refinery-mcp"` (personal namespace; LareLabs org requires public org membership on GitHub)
 - `server.json` → matching name + npm package `@larelabs/refinery-mcp`
 - npm publish **before** registry publish (metadata only; code lives on npm)
 
 Verify: `curl -sS 'https://registry.modelcontextprotocol.io/v0/servers?search=refinery'`
+
+**Published:** `io.github.cameronlares/refinery-mcp` v0.1.4 (2026-06-28)
 
 ## README visuals
 
