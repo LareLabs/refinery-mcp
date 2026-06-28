@@ -11,6 +11,9 @@ Refinery MCP exposes three tools for cleaning web HTML before an agent uses it i
 - Node.js 20+
 - An Apify API token
 
+Official MCP Registry: `io.github.LareLabs/refinery-mcp`  
+https://registry.modelcontextprotocol.io/v0/servers?search=LareLabs/refinery
+
 The server calls the Refinery Apify Actor:
 
 https://apify.com/larelabs/refinery-html-to-llm-cleaner

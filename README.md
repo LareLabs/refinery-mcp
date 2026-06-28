@@ -228,7 +228,8 @@ I fetched this page HTML with Playwright. Use Refinery MCP clean_html before add
 
 ## Roadmap
 
-- MCP Registry publish (metadata ready; `mcp-publisher-official publish` after GitHub login)
+- Glama listing (`glama.json` added — submit at https://glama.ai/mcp/servers)
+- mcp.so directory PR (pending)
 - Hosted HTTP/SSE MCP transport
 - Batch URL cleanup tool
 - Glama / PulseMCP / FindMCP / mcp.so listings

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://glama.ai/schemas/glama.json",
+  "displayName": "Refinery MCP",
+  "description": "Clean raw HTML into LLM-ready text before agents spend tokens. Wraps the Refinery Apify Actor for RAG pipelines.",
+  "category": "developer-tools",
+  "repository": {
+    "url": "https://github.com/LareLabs/refinery-mcp",
+    "source": "github"
+  },
+  "homepage": "https://larelabs.github.io/refinery-mcp/",
+  "license": "MIT",
+  "environmentVariables": [
+    {
+      "name": "APIFY_TOKEN",
+      "description": "Apify API token for the Refinery HTML cleaner actor",
+      "required": true
+    },
+    {
+      "name": "REFINERY_ACTOR_ID",
+      "description": "Apify actor id (default: larelabs/refinery-html-to-llm-cleaner)",
+      "required": false
+    }
+  ]
+}

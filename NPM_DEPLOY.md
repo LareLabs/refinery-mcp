@@ -61,7 +61,7 @@ Requirements:
 
 Verify: `curl -sS 'https://registry.modelcontextprotocol.io/v0/servers?search=LareLabs/refinery'`
 
-**Published:** `io.github.LareLabs/refinery-mcp` v0.1.5
+**Published:** `io.github.LareLabs/refinery-mcp` v0.1.6
 
 If publish returns 403, publicize org membership first:
 
